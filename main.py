@@ -7,7 +7,7 @@ import subprocess
 
 def main():
     di = Data_Importer()
-    result = di.search("RBS")
+    result = di.get_data(name="RBS")
     print(result)
     return
 
