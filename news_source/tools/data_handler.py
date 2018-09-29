@@ -16,6 +16,11 @@ class Data_Handler:
         self.datecol = datecol
 
     def run(self,df=None,name=None):
+        df = df or self.df
+        
+        if df is None and self.df is None:
+            return
+
         if name is None:
             return
 
@@ -25,14 +30,17 @@ class Data_Handler:
         if self.debug:
             print("Df size:",df.shape)
 
-        df["date"] = df["Date"].apply(lambda x: dt.datetime.strptime(x,"%Y-%M-%d"))
-        
+        if "Date" in df.columns and "date" not in df.columns:
+            df["date"] = df["Date"].apply(lambda x: dt.datetime.strptime(x,"%Y-%M-%d"))
+
         df = df.apply(lambda x: self.process_row(x) ,axis=1)
 
         if self.debug:
             print("Finished processing data")
 
         return df
+
+
 
     def process_row(self,row):
         """
