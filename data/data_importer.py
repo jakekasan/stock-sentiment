@@ -12,16 +12,26 @@ class Data_Importer:
     def set_name(self,name=None):
         self.name = name
 
-    def get_data(self,name=None,from_date=None,to_date=None):
-        data = pd.DataFrame(self.search(name=name,from_date=from_date,to_date=to_date))
-        pass
+    def get_data(self,name=None,date_from=None,date_to=None):
+        results = self.search(name=name,date_from=date_from,date_to=date_to)
 
-    def search(self,name=name,from_date=None,to_date=None):
+        if results is None:
+            return None
 
-        if 
-        if (date is not None) and (not isinstance(date,dt.datetime)):
-            return print(self.error())
+        price = [item["close"] for key,item in results.items()]
+        date = [key for key,item in results.items()]
+
+        df = pd.DataFrame({"date":date,"price":price})
+
+        print(df.head())
+
+        return None
+
+    def search(self,name=None,date_from=None,date_to=None):
         try:
+            if name is None:
+                return None
+
             date_to = date_to or dt.datetime.now()
             date_from = date_from or date_to - dt.timedelta(days=365)
             
@@ -36,7 +46,7 @@ class Data_Importer:
 
             r = requests.get(world_trading_data["address"]["price"],params=params)
 
-            return r.json()    
+            return r.json()["history"]    
         except:
             return None
 
