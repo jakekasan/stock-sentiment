@@ -1,6 +1,6 @@
-from config.sources import guardian as api
+from config.news_sources import guardian as api
 import requests
-from sources.news_wrangler import News_Wrangler
+from news_source.sources.news_wrangler import News_Wrangler
 
 address = "https://content.guardianapis.com/search"
 
