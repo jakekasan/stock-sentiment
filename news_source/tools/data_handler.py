@@ -122,7 +122,9 @@ class Data_Handler:
                 return 1
             return 0
 
-        df["label"] = df["returns"].apply(lambda x: 1 if )        
+        df["label"] = df["returns"].apply(label_func)
+
+        return        
 
     def nlp_get_hapaxes(self,df=None,number=1000):
         if df is None:
