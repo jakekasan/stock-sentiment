@@ -19,6 +19,9 @@ class News_Wrangler:
 
         if not date:
             date = dt.date.today()
+
+        if type(date) == str:
+            date = dt.datetime.strptime(date,"%Y-%M-%d")
         
         to_date = "{}-{}-{}".format(date.year,date.month,date.day)
 
