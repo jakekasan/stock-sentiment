@@ -1,1 +1,4 @@
 *.pyc
+./**/*.pyc
+./***/*.pyc
+news_source/tools/__pycache__/data_handler.cpython-37.pyc
