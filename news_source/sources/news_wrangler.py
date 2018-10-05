@@ -8,7 +8,7 @@ class News_Wrangler:
     def __init__(self):
         return
 
-    def search(self,search=None,date=None,news_delay=3):
+    def search(self,search=None,date=None,news_delay=3,just_results=False):
         """
             returns text from news source
 
@@ -29,9 +29,10 @@ class News_Wrangler:
 
         from_date = "{}-{}-{}".format(date.year,date.month,date.day)
 
-        return self.api_search(search=search,from_date=from_date,to_date=to_date,news_delay=news_delay)
+        return self.api_search(search=search,from_date=from_date,to_date=to_date,news_delay=news_delay,just_results=just_results)
 
-    def api_search(self,search=None,from_date=None,to_date=None,news_delay=None):
+
+    def api_search(self,search=None,from_date=None,to_date=None,news_delay=None,just_results=False):
         return
 
         
