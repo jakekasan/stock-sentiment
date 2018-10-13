@@ -1,5 +1,6 @@
 from news_source.main import single_lookup, range_lookup
-from nlptools.main import get_tokens, get_lemms, remove_stopwords
+from nlptools.main import get_tokens, get_lemms, remove_stopwords, most_common_words
+from models import run_knn
 
 import pandas as pd
 
@@ -23,4 +24,15 @@ import pandas as pd
 
 df = pd.read_csv("./test.csv")
 
+df = df.sample(2)
+
 # get tokens
+
+
+#print(type(df["text"]) == pd.Series)
+#print(df.columns)
+tokens = get_tokens(target=df["text"])
+df = most_common_words(target=df["text"])
+
+print(df.head())
+
